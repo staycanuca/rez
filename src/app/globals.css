@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.sticky-col {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: #f8f9fa; /* A light background to cover scrolling content */
+}
+
+.first-col {
+  left: 0;
+  z-index: 2;
+}
+
+.second-col {
+  left: 200px; /* This should match the min-width of the first column */
+  z-index: 2;
+}
+
+/* Ensure the table header has a higher z-index to stay on top */
+.table-responsive thead th {
+  z-index: 3;
+}
+
+.calendar-nav-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 72px; /* Height of the main navbar. Adjust if needed. */
+  background: white;
+  z-index: 1019; /* Below main navbar, above content */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.summary-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 135px; /* Height of main nav + calendar nav. Adjust if needed. */
+  z-index: 1018;
+}
+
+.calendar-scroll-container {
+  /* Viewport height - main nav height - calendar nav height - summary height */
+  max-height: calc(100vh - 72px - 70px - 70px);
+  overflow-y: auto;
+}
